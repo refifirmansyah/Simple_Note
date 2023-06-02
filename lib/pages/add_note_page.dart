@@ -4,10 +4,8 @@ import 'package:simple_note/db/database_service.dart';
 import 'package:simple_note/models/note.dart';
 
 class AddNotePage extends StatefulWidget {
-  const AddNotePage({
-    super.key,
-    this.note,
-  });
+  const AddNotePage({super.key, this.note,});
+
 
   final Note? note;
   @override
@@ -26,6 +24,7 @@ class _AddNotePageState extends State<AddNotePage> {
   void initState() {
     _title = TextEditingController();
     _description = TextEditingController();
+    super.initState();
     if (widget.note != null) {
       _title.text = widget.note!.title;
       _description.text = widget.note!.description;
@@ -116,15 +115,16 @@ class _AddNotePageState extends State<AddNotePage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
-            //ADD NOTE
+            // ADD NOTE
             Note note = Note(
-              _title.text,
-              _description.text,
+              _title.text, 
+              _description.text, 
               DateTime.now(),
             );
 
             if (widget.note != null) {
               await databaseService.editNote(widget.note!.key, note);
+              GoRouter.of(context).pop();
             } else {
               await databaseService.addNote(note);
               GoRouter.of(context).pop();
