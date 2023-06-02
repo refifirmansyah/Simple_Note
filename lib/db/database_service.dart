@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:simple_note/models/note.dart';
 
+
 class DatabaseService {
   static const boxName = 'notes';
 
@@ -8,19 +9,16 @@ class DatabaseService {
     final box = await Hive.openBox(boxName);
     await box.add(note);
   }
-
   Future<void> editNote(int key, Note note) async {
     final box = await Hive.openBox(boxName);
-    await box.put(note.key, note);
+    await box.put(key, note);
   }
-
-  Future<List<Note>> getNotes(Note note) async {
-    final box = await Hive.openBox(boxName);
+    Future<List<Note>> getNotes(Note note) async {
+     final box = await Hive.openBox(boxName);
     return box.get(note.key);
-  }
-
+   }
   Future<void> deleteNote(Note note) async {
     final box = await Hive.openBox(boxName);
-    return box.delete(note.key);
+    await box.delete(note.key);
   }
 }
