@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("simple Note App"),
+        title: const Text("Simple Note App"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
