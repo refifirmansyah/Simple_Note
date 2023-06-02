@@ -32,9 +32,7 @@ class AppRoutes {
     GoRouterState state,
   ) {
     return MaterialPage(
-      child: AddNotePage(
-        note: state.extra as Note,
-      ),
+      child: AddNotePage(note: state.extra as Note,),
     );
   }
 
